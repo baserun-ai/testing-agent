@@ -152,6 +152,21 @@ tests = ["attrs[tests-no-zope]", "zope-interface"]
 tests-no-zope = ["cloudpickle", "hypothesis", "mypy (>=1.1.1)", "pympler", "pytest (>=4.3.0)", "pytest-mypy-plugins", "pytest-xdist[psutil]"]
 
 [[package]]
+name = "baserun"
+version = "0.5.3"
+description = "Tools for testing, debugging, and evaluating LLM features."
+optional = false
+python-versions = ">=3.7.1"
+files = [
+    {file = "baserun-0.5.3-py3-none-any.whl", hash = "sha256:a3b901ee3d4b783014f6a1c34431113ed5779a45e42b123ce748ef73f0aff837"},
+    {file = "baserun-0.5.3.tar.gz", hash = "sha256:2363dc4ff5c85a1302a56864f7316487ebed69928b3c02f678f9dce49bb816cc"},
+]
+
+[package.dependencies]
+openai = ">=0.27.2"
+requests = ">=2.31.0"
+
+[[package]]
 name = "beautifulsoup4"
 version = "4.12.2"
 description = "Screen-scraping library"
@@ -1278,4 +1293,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10.3"
-content-hash = "bbb38061e41148cbf4e056e3aeb6a46c88703344ae67e7e8320663bd4d479a0a"
+content-hash = "9104222ca4e73432c35cdb0ce0f6ceddd45b73983202b9394aa213a8734883a3"

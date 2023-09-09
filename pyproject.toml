@@ -15,6 +15,7 @@ openai = "^0.27.8"
 psutil = "^5.9.5"
 wikipedia = "^1.4.0"
 google-search-results = "^2.4.2"
+baserun = "^0.5.3"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.3.0"

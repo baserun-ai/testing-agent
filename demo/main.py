@@ -2,6 +2,7 @@
 import logging
 import sys
 
+import baserun as baserun
 from dotenv import load_dotenv
 from langchain.agents import initialize_agent, AgentType, load_tools
 from langchain.chat_models import ChatOpenAI
@@ -13,6 +14,7 @@ logging.basicConfig()
 logger.setLevel(logging.DEBUG)
 
 
+@baserun.trace
 def main(user_input=""):
     if not user_input:
         print("What would you like me to do?")
@@ -30,6 +32,7 @@ def main(user_input=""):
 
 
 if __name__ == "__main__":
+    baserun.init()
     if sys.argv[-1] not in __file__:
         main(sys.argv[-1])
     else:
