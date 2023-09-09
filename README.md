@@ -38,7 +38,7 @@ After you provide input you can sit back and watch it accomplish its task.
 Sign up for Datadog, install a Datadog agent locally, and then run with `ddtrace-run`:
 
 ```bash
-poetry run ddtrace-run python demo/main.py
+DD_API_KEY=MY_API_KEY DD_OPENAI_LOGS_ENABLED=1 poetry run ddtrace-run python demo/main.py
 ```
 
 Then look at APM: https://us5.datadoghq.com/apm/traces
