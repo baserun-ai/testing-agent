@@ -32,3 +32,13 @@ What would you like me to do?
 ## After this step everything is automatic
 
 After you provide input you can sit back and watch it accomplish its task.
+
+## Datadog
+
+Sign up for Datadog, install a Datadog agent locally, and then run with `ddtrace-run`:
+
+```bash
+poetry run ddtrace-run python demo/main.py
+```
+
+Then look at APM: https://us5.datadoghq.com/apm/traces
