@@ -8,15 +8,14 @@ packages = [{ include = "demo" }]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.10.3"
+python = ">=3.8.1,<3.12"
 langchain = "^0.0.285"
 python-dotenv = "^1.0.0"
 openai = "^0.27.8"
-psutil = "^5.9.5"
 wikipedia = "^1.4.0"
 google-search-results = "^2.4.2"
-baserun = "^0.5.3"
-ddtrace = "^1.18.4"
+baserun = { path = "/Users/epeterson/src/baserun/baserun-py", develop = true }
+anthropic = "^0.3.11"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.3.0"
