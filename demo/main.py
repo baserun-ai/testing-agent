@@ -50,6 +50,7 @@ def main(provider="openai", user_input="", use_streaming=False):
 
     result = agent_executor.run(user_input)
     print(result)
+    return result
 
 
 if __name__ == "__main__":
