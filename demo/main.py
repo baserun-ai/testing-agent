@@ -50,6 +50,7 @@ def main(provider="openai", user_input="", use_streaming=False):
 
     result = agent_executor.run(user_input)
     print(result)
+    Baserun.log(name=f"{provider} Stream={use_streaming}", payload={"input": user_input, "result": result})
     return result
 
 
