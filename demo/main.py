@@ -36,7 +36,7 @@ def choose_llm(provider: str, use_streaming: bool = False):
 
 
 @baserun.trace
-def main(provider="openai", user_input="", use_streaming=False):
+def main(provider="openai", user_input="", use_streaming=False, agent_type=AgentType.CHAT_ZERO_SHOT_REACT_DESCRIPTION):
     if not user_input:
         print("What would you like me to do?")
         print("> ", end="")
@@ -46,7 +46,7 @@ def main(provider="openai", user_input="", use_streaming=False):
 
     tools = load_tools(["serpapi", "llm-math", "wikipedia"], llm=llm)
 
-    agent_executor = initialize_agent(tools, llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION, verbose=True)
+    agent_executor = initialize_agent(tools, llm, agent=agent_type, verbose=True)
 
     result = agent_executor.run(user_input)
     print(result)
