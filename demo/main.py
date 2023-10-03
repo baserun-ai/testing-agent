@@ -1,11 +1,11 @@
 #!/usr/bin/env python
+import argparse
 import logging
-import sys
 
 import baserun as baserun
 from baserun import Baserun
 from dotenv import load_dotenv
-from langchain.agents import initialize_agent, AgentType, load_tools
+from langchain.agents import initialize_agent, load_tools, AgentType
 from langchain.callbacks import StreamingStdOutCallbackHandler
 from langchain.chat_models import ChatOpenAI, ChatAnthropic
 
@@ -56,7 +56,27 @@ def main(provider="openai", user_input="", use_streaming=False, agent_type=Agent
 
 if __name__ == "__main__":
     Baserun.init()
-    if sys.argv[-1] not in __file__:
-        main(user_input=sys.argv[-1])
-    else:
-        main()
+
+    parser = argparse.ArgumentParser(description="Your Program Description Here")
+
+    # Make user_input a positional argument
+    parser.add_argument("user_input", help="User input for the agent.")
+    parser.add_argument("--provider", default="openai", choices=["openai", "anthropic"], help="Specify the provider.")
+    parser.add_argument("--use_streaming", action="store_true", help="Enable streaming.")
+
+    # Use the actual enum values for choices
+    parser.add_argument(
+        "--agent_type",
+        default=AgentType.CHAT_ZERO_SHOT_REACT_DESCRIPTION.value,
+        choices=[e.value for e in AgentType],
+        help="Type of the agent.",
+    )
+
+    args = parser.parse_args()
+
+    main(
+        provider=args.provider,
+        user_input=args.user_input,
+        use_streaming=args.use_streaming,
+        agent_type=args.agent_type,
+    )

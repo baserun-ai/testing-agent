@@ -33,12 +33,15 @@ What would you like me to do?
 
 After you provide input you can sit back and watch it accomplish its task.
 
-## Datadog
+## Command line arguments
 
-Sign up for Datadog, install a Datadog agent locally, and then run with `ddtrace-run`:
-
-```bash
-DD_API_KEY=MY_API_KEY DD_OPENAI_LOGS_ENABLED=1 poetry run ddtrace-run python demo/main.py
 ```
+positional arguments:
+  user_input            User input for the agent.
 
-Then look at APM: https://us5.datadoghq.com/apm/traces
+options:
+  --provider            {openai,anthropic}
+                        Specify the provider.
+  --use_streaming       Enable streaming.
+  --agent_type          Type of the agent
+```
