@@ -3,10 +3,10 @@ import argparse
 import logging
 import os
 
-import baserun
 from dotenv import load_dotenv
 from langchain.agents import AgentType
 
+import baserun
 from demo.agent import run
 
 load_dotenv()
@@ -17,7 +17,8 @@ logger.setLevel(logging.DEBUG)
 
 logger = logging.getLogger(__name__)
 
-if __name__ == "__main__":
+
+def main():
     baserun.init()
 
     parser = argparse.ArgumentParser(description="Your Program Description Here")
@@ -45,3 +46,7 @@ if __name__ == "__main__":
             use_streaming=args.use_streaming,
             agent_type=args.agent_type,
         )
+
+
+if __name__ == "__main__":
+    main()

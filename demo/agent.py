@@ -73,7 +73,7 @@ def run(provider="openai", user_input="", use_streaming=False, agent_type=AgentT
         template_string=TEMPLATE,
         parameters=parameters,
         tools=tools,
-        template_name="main_agent_prompt",
+        template_name="task_agent_prompt",
         template_tag="base",
     )
 
