@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from langchain.agents import AgentType
 
 import baserun
-from demo.agent import run
+from demo.agent import run_agent
 
 load_dotenv()
 
@@ -25,8 +25,15 @@ def main():
 
     # Make user_input a positional argument
     parser.add_argument("user_input", help="User input for the agent.")
-    parser.add_argument("--provider", default="openai", choices=["openai", "anthropic"], help="Specify the provider.")
-    parser.add_argument("--use_streaming", action="store_true", help="Enable streaming.")
+    parser.add_argument(
+        "--provider",
+        default="openai",
+        choices=["openai", "anthropic"],
+        help="Specify the provider.",
+    )
+    parser.add_argument(
+        "--use_streaming", action="store_true", help="Enable streaming."
+    )
 
     # Use the actual enum values for choices
     parser.add_argument(
@@ -40,7 +47,7 @@ def main():
 
     username = os.getlogin()
     with baserun.with_session(username):
-        run(
+        run_agent(
             provider=args.provider,
             user_input=args.user_input,
             use_streaming=args.use_streaming,

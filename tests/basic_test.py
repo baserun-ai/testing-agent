@@ -4,7 +4,7 @@ import pytest
 from langchain.agents import AgentType
 
 from baserun import Baserun
-from demo.agent import run
+from demo.agent import run_agent
 
 
 @pytest.fixture
@@ -17,29 +17,29 @@ def user_input():
 
 def test_openai_non_streaming(user_input):
     Baserun.init()
-    result = run(user_input=user_input, provider="openai", use_streaming=False)
+    result = run_agent(user_input=user_input, provider="openai", use_streaming=False)
     assert "Zeilinger" in result
     Baserun.evals.includes("OpenAI Non-Streaming", result, ["Zeilinger"])
 
 
 def test_openai_functions(user_input):
     Baserun.init()
-    result = run(
+    result = run_agent(
         user_input=user_input, provider="openai", use_streaming=False, agent_type=AgentType.OPENAI_MULTI_FUNCTIONS
     )
     assert "Zeilinger" in result
     Baserun.evals.includes("OpenAI Non-Streaming", result, ["Zeilinger"])
 
 
-def test_openai_streaming():
+def test_openai_streaming(user_input):
     Baserun.init()
-    result = run(user_input=user_input, provider="openai", use_streaming=True)
+    result = run_agent(user_input=user_input, provider="openai", use_streaming=True)
     assert "Zeilinger" in result
     Baserun.evals.includes("OpenAI Streaming", result, ["Zeilinger"])
 
 
-def test_anthropic():
+def test_anthropic(user_input):
     Baserun.init()
-    result = run(user_input=user_input, provider="anthropic")
+    result = run_agent(user_input=user_input, provider="anthropic")
     assert "Zeilinger" in result
     Baserun.evals.includes("Anthropic", result, ["Zeilinger"])

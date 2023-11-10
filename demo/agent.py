@@ -57,7 +57,12 @@ Question: {input}
 
 
 @baserun.trace
-def run(provider="openai", user_input="", use_streaming=False, agent_type=AgentType.CHAT_ZERO_SHOT_REACT_DESCRIPTION):
+def run_agent(
+    provider="openai",
+    user_input="",
+    use_streaming=False,
+    agent_type=AgentType.CHAT_ZERO_SHOT_REACT_DESCRIPTION,
+):
     if not user_input:
         print("What would you like me to do?")
         print("> ", end="")
@@ -67,7 +72,11 @@ def run(provider="openai", user_input="", use_streaming=False, agent_type=AgentT
     tools = load_tools(["serpapi", "llm-math", "wikipedia"], llm=llm)
     tool_strings = "\n".join([f"{tool.name}: {tool.description}" for tool in tools])
     tool_names = ", ".join([tool.name for tool in tools])
-    parameters = {"tool_names": tool_names, "tool_strings": tool_strings, "input": user_input}
+    parameters = {
+        "tool_names": tool_names,
+        "tool_strings": tool_strings,
+        "input": user_input,
+    }
 
     prompt = create_langchain_template(
         template_string=TEMPLATE,
@@ -87,6 +96,9 @@ def run(provider="openai", user_input="", use_streaming=False, agent_type=AgentT
         parameters["input"] += ". Please remember to format your response correctly."
         result = agent_executor.run(**parameters)
 
-    Baserun.log(name=f"{provider} Stream={use_streaming}", payload={"input": user_input, "result": result})
+    Baserun.log(
+        name=f"{provider} Stream={use_streaming}",
+        payload={"input": user_input, "result": result},
+    )
 
     return result
