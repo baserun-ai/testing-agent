@@ -18,7 +18,7 @@ anthropic = "^0.3.11"
 rapidfuzz = "^3.5.1"
 python-levenshtein = "^0.23.0"
 wolframalpha = "^5.0.0"
-baserun = { path = "/Users/epeterson/src/baserun/baserun-py", develop = true }
+baserun = ">=0.9.0b1"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.3.0"
