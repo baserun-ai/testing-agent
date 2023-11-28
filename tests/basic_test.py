@@ -3,8 +3,8 @@ from datetime import datetime
 import pytest
 from langchain.agents import AgentType
 
+from agent.agent import run_agent
 from baserun import Baserun
-from demo.agent import run_agent
 
 
 @pytest.fixture
@@ -22,7 +22,7 @@ def test_openai_non_streaming(user_input):
     Baserun.evals.includes("OpenAI Non-Streaming", result, ["Zeilinger"])
 
 
-def test_openai_functions(user_input):
+def test_openai_tools(user_input):
     Baserun.init()
     result = run_agent(
         user_input=user_input, provider="openai", use_streaming=False, agent_type=AgentType.OPENAI_MULTI_FUNCTIONS

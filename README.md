@@ -1,47 +1,18 @@
-# Baserun demo
+# Baserun demos
 
-This is a small app that uses LangChain to demonstrate Baserun.
+This is a collection of applications that demonstrate how Baserun is used.
 
-## Walkthrough
+## Getting started
 
-### Setup
+1. Clone this repo
+2. `poetry install`
+3. Create a .env file with at least two environment variables: `BASERUN_API_KEY` and `OPENAI_API_KEY`
 
-```bash
-$ poetry install
-```
+## Autonomous Agent
 
-### Execute the main.py script
+In the `agent/` module there is a basic autonomous agent built using langchain. To execute, run `python agent/main.py`.
 
-```bash
-$ python demo/main.py
-```
+## Chatbot
 
-If passed without arguments it will prompt you for a task. You can pass an argument for the task if you wish:
-
-```bash
-python demo/main.py "tell me the capital of the united states"
-```
-
-### It will prompt you for what you want to do
-
-```
-What would you like me to do?
-> Tell me the capital of the united states
-```
-
-## After this step everything is automatic
-
-After you provide input you can sit back and watch it accomplish its task.
-
-## Command line arguments
-
-```
-positional arguments:
-  user_input            User input for the agent.
-
-options:
-  --provider            {openai,anthropic}
-                        Specify the provider.
-  --use_streaming       Enable streaming.
-  --agent_type          Type of the agent
-```
+In the `chatbot/` module there is a basic implementation of a customer service chatbot. To execute,
+run `python chatbot/main.py`

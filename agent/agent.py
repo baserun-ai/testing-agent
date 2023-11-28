@@ -1,14 +1,14 @@
 import logging
 
 from dotenv import load_dotenv
-from langchain import LLMChain
 from langchain.agents import load_tools, AgentType, initialize_agent
+from langchain.chains import LLMChain
 from langchain.schema import OutputParserException
 
 import baserun
 from baserun import Baserun
 from baserun.templates import create_langchain_template
-from demo.features import choose_llm
+from common.features import choose_llm
 
 load_dotenv()
 
@@ -69,7 +69,7 @@ def run_agent(
         user_input = input()
 
     llm = choose_llm(provider, use_streaming)
-    tools = load_tools(["serpapi", "llm-math", "wikipedia"], llm=llm)
+    tools = load_tools(["serpapi", "wikipedia", "requests_all", "wolfram-alpha"], llm=llm)
     tool_strings = "\n".join([f"{tool.name}: {tool.description}" for tool in tools])
     tool_names = ", ".join([tool.name for tool in tools])
     parameters = {
@@ -88,7 +88,14 @@ def run_agent(
 
     llm_chain = LLMChain(llm=llm, prompt=prompt)
 
-    agent_executor = initialize_agent(llm_chain=llm_chain, tools=tools, llm=llm, agent=agent_type, verbose=True)
+    agent_executor = initialize_agent(
+        llm_chain=llm_chain,
+        tools=tools,
+        llm=llm,
+        agent=agent_type,
+        verbose=True,
+        handle_parsing_errors=True,
+    )
 
     try:
         result = agent_executor.run(**parameters)
@@ -96,9 +103,6 @@ def run_agent(
         parameters["input"] += ". Please remember to format your response correctly."
         result = agent_executor.run(**parameters)
 
-    Baserun.log(
-        name=f"{provider} Stream={use_streaming}",
-        payload={"input": user_input, "result": result},
-    )
+    Baserun.log(name=f"{provider} Stream={use_streaming}", payload={"answer": result})
 
     return result

@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from langchain.agents import AgentType
 
 import baserun
-from demo.agent import run_agent
+from agent.agent import run_agent
 
 load_dotenv()
 
@@ -21,7 +21,7 @@ logger = logging.getLogger(__name__)
 def main():
     baserun.init()
 
-    parser = argparse.ArgumentParser(description="Your Program Description Here")
+    parser = argparse.ArgumentParser(description="An autonomous agent using Baserun")
 
     # Make user_input a positional argument
     parser.add_argument("user_input", help="User input for the agent.")
@@ -31,9 +31,7 @@ def main():
         choices=["openai", "anthropic"],
         help="Specify the provider.",
     )
-    parser.add_argument(
-        "--use_streaming", action="store_true", help="Enable streaming."
-    )
+    parser.add_argument("--use_streaming", action="store_true", help="Enable streaming.")
 
     # Use the actual enum values for choices
     parser.add_argument(
